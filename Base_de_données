@@ -1,0 +1,42 @@
+
+# Création BDD Postgresql pour plateforme e-commerce "AuBonDeal"
+
+Le MCD et le MLD : Analysez attentivement les entités, les relations entre les entités, les attributs, 
+les clés primaires, les clés étrangères et les contraintes présentes dans le modèle.
+
+CREATE TABLE Users (
+    user_UUID SERIAL PRIMARY KEY,
+    user_pseudo VARCHAR(20) NOT NULL,
+    username VARCHAR(30) NOT NULL,
+    user_password VARCHAR(20) NOT NULL,
+    created_at DATE NOT NULL
+);
+
+CREATE TABLE Orders (
+    order_number SERIAL PRIMARY KEY,
+    order_total_cost_ht NUMERIC(10, 2) NOT NULL,
+    order_total_quantity NUMERIC NOT NULL,
+    created_at DATE NOT NULL,
+    deliver_at0 DATE NOT NULL,
+    user_UUID INT NOT NULL,
+    FOREIGN KEY (user_UUID) REFERENCES Users(user_UUID)
+);
+
+CREATE TABLE Products (
+    product_UUID SERIAL PRIMARY KEY,
+    product_name VARCHAR(30) NOT NULL,
+    product_description VARCHAR(100) NOT NULL,
+    product_price numeric(10, 2) NOT NULL,
+    production_quantity NUMERIC NOT NULL,
+    created_at DATE NOT NULL,
+    updated_at DATE NOT NULL
+);
+
+CREATE TABLE Products_Orders (
+    order_number INT NOT NULL,
+    product_UUID INT NOT NULL,
+    FOREIGN KEY (order_number) REFERENCES Orders(order_number),
+    FOREIGN KEY (product_UUID) REFERENCES Products(product_UUID),
+    PRIMARY KEY (order_number, product_UUID)
+);
+
