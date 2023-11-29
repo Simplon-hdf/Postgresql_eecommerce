@@ -40,3 +40,35 @@ CREATE TABLE Products_Orders (
     PRIMARY KEY (order_number, product_UUID)
 );
 
+// Créez la base de données pour améliorer les performances et assurer une gestion efficace des opérations CRUD.
+
+-- Inserting Users
+INSERT INTO Users (user_pseudo, username, user_password, created_at) VALUES 
+    ('Dok', 'Kimia', 'Password', '2005-01-25'),
+    ('Tim', 'Duponr', 'Password', '2011-08-02'),
+    ('Zak', 'Zakari', 'Password', '2018-09-08');
+
+-- Inserting Products
+INSERT INTO Products (product_name, product_description, product_price, production_quantity, created_at, updated_at) VALUES
+    ('Yogurt', 'Organic product', 1.29, 4000, '2023-11-26', CURRENT_DATE),
+    ('Milk', 'French cow organic product', 0.29, 2120, '2023-11-26', CURRENT_DATE),
+    ('Cheese', 'Organic product', 1.52, 3250, '2023-11-26', CURRENT_DATE),
+    ('Eggs', 'Free-range and organic hens', 0.10, 5000, '2023-11-26', CURRENT_DATE),
+    ('Sugar', 'Organic cane sugar', 0.99, 4500, '2023-11-26', CURRENT_DATE);
+
+-- Inserting Orders
+INSERT INTO Orders (order_total_cost_ht, order_total_quantity, created_at, deliver_at0, user_UUID) VALUES 
+    (1.29, 4000, CURRENT_DATE, CURRENT_DATE, 1),
+    (0.29, 2120, CURRENT_DATE, CURRENT_DATE, 2),
+    (1.52, 3250, CURRENT_DATE, CURRENT_DATE, 3),
+    (0.10, 5000, CURRENT_DATE, CURRENT_DATE, 1),
+    (0.99, 4500, CURRENT_DATE, CURRENT_DATE, 2);
+
+-- Inserting Products_Orders
+INSERT INTO Products_Orders (order_number, product_UUID) VALUES 
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5);
+
